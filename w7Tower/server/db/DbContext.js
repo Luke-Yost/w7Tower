@@ -6,7 +6,7 @@ import { ValueSchema } from '../models/Value'
 class DbContext {
   Values = mongoose.model('Value', ValueSchema);
   Account = mongoose.model('Account', AccountSchema);
-TowerEvent = mongoose.model('TowerEvent', TowerEventSchema)
+TowerEvents = mongoose.model('TowerEvent', TowerEventSchema)
 
 }
 
