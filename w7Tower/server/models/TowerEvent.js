@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 const Schema = mongoose.Schema
+const ObjectId = Schema.Types.ObjectId
 
 export const TowerEventSchema = new Schema(
   {
@@ -10,6 +11,26 @@ export const TowerEventSchema = new Schema(
     capacity: { type: Number, required: true},
     startDate: { type: Date, required: true},
     isCanceled: { type: Boolean, required: true},
-    type: { type: Enumerator String, }
-  },  
+    type: { type: String, enum: ['concert', 'sport', 'digital', ] },
+    towerEventId: { type: ObjectId, required: true, ref: 'TowerEvent'},
+    creatorId: { type: ObjectId, required: true, ref: 'Account' }
+  },
+  {
+    timestamps: true, toJSON: { virtuals: true }
+  }
 )
+
+TowerEventSchema.virtual('creator', {
+  localField: 'creatorId',
+  foreignField: '_id',
+  ref: 'Account',
+  justOne: true
+})
+
+// TowerEventSchema.virtual('towerEvent', {
+//   localField: 'towerEventId',
+//   foreignField: '_id',
+//   ref: 'TowerEvent',
+//   justOne: true
+// }
+// )
