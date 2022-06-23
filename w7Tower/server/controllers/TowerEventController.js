@@ -35,7 +35,7 @@ export class TowerEventController extends BaseController{
   async create(req, res, next) {
     try {
       req.body.creatorId = req.userInfo.id
-      let towerEvent = await towerEventsService.create(req.body)
+      const towerEvent = await towerEventsService.create(req.body)
       return res.send(towerEvent)
     } catch (error) {
       next(error)

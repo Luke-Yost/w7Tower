@@ -4,14 +4,21 @@ import { ticketsService } from "../services/TicketsService"
 
 export class TicketsController extends BaseController{
   constructor(){
-    super('api/events')
+    super('api/tickets')
     this.router
-      .get('', this.getAll)
-      .get('/:id', this.getById)
+      
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.create)
-      .put('/:id', this.edit)
-      .delete('/:id', this.delete)
+    
+  }
+  async create(req, res, next) {
+    try {
+      req.body.accountId = req.userInfo.id
+      const newTicket = await ticketsService.create(req.body)
+      return res.send(newTicket)
+    } catch (error) {
+      next(error)
+    }
   }
 
 
