@@ -42,7 +42,9 @@ class TowerEventsService {
     if (deleteEvent.creatorId.toString() != userId) {
       throw new BadRequest("you don't have permission to delete this TowerEvent")
     }
-    deleteEvent.isCanceled = true
+    deleteEvent.isCanceled = true 
+    deleteEvent.save()
+    return deleteEvent
   }
 
 }
