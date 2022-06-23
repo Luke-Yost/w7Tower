@@ -1,6 +1,6 @@
 import { Auth0Provider } from '@bcwdev/auth0provider'
-import { towerEventsService } from "../services/TowerEventsService"
 import BaseController from '../utils/BaseController'
+import { towerEventsService } from "../services/TowerEventsService"
 
 export class TowerEventController extends BaseController{
   constructor(){

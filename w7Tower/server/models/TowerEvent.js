@@ -26,10 +26,3 @@ TowerEventSchema.virtual('creator', {
   justOne: true
 })
 
-// TowerEventSchema.virtual('towerEvent', {
-//   localField: 'towerEventId',
-//   foreignField: '_id',
-//   ref: 'TowerEvent',
-//   justOne: true
-// }
-// )
