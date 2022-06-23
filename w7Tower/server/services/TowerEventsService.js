@@ -17,11 +17,14 @@ class TowerEventsService {
     await towerEvent.populate('creator')
     return towerEvent
   }
-    
+
   async edit(id, edit) {
     const originalTowerEvent = await dbContext.TowerEvents.findById(id).populate('creator')
     if (originalTowerEvent.creatorId.toString() != edit.creatorId) {
       throw new BadRequest('only the creator of this TowerEvent can edit it')
+    }
+    if (originalTowerEvent.isCanceled == true) {
+      throw new BadRequest('You cannot edit canceled TowerEvents')
     }
       originalTowerEvent.name = edit.name ? edit.name : originalTowerEvent.name 
       originalTowerEvent.description = edit.description ? edit.description : originalTowerEvent.description
@@ -32,6 +35,14 @@ class TowerEventsService {
       // originalTowerEvent.isCanceled = edit.isCanceled ? edit.isCanceled : originalTowerEvent.isCanceled 
       originalTowerEvent.save()
       return edit
+  }
+
+  async delete(id, userId) {
+    const deleteEvent = await dbContext.TowerEvents.findById(id)
+    if (deleteEvent.creatorId.toString() != userId) {
+      throw new BadRequest("you don't have permission to delete this TowerEvent")
+    }
+    deleteEvent.isCanceled = true
   }
 
 }
