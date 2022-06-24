@@ -1,5 +1,5 @@
 import { dbContext } from '../db/DbContext'
-
+import { towerEventsService } from "../services/TowerEventsService"
 // Private Methods
 
 /**
@@ -43,6 +43,13 @@ function sanitizeBody(body) {
 }
 
 class AccountService {
+
+  async getAccountTicket( accountId){
+    const ticket = await dbContext.Tickets.find({accountId}).populate('event')
+    
+    return ticket
+  }
+
   /**
    * Returns a user account from the Auth0 user object
    *

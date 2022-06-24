@@ -8,6 +8,7 @@ export class AccountController extends BaseController {
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
       .get('', this.getUserAccount)
+      .get('/tickets', this.getUserTickets)
   }
 
   async getUserAccount(req, res, next) {
@@ -18,4 +19,15 @@ export class AccountController extends BaseController {
       next(error)
     }
   }
+
+  async getUserTickets(req, res, next) {
+    try {
+      const accountInfo = req.userInfo.id
+      const tickets = await accountService.getAccountTicket( accountInfo)
+      return res.send(tickets)
+    } catch (error) {
+      next(error)
+    }
+  }
+
 }
