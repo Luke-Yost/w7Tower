@@ -11,12 +11,22 @@ class TowerEventsService {
     return towerEvent
   }
 
-async getEventTickets(eventId) {
+  async getEventTickets(eventId) {
     let tickets = await dbContext.Tickets.find({eventId}).populate('account')
     return tickets
   }
 
+  async getEventComments(eventId) {
+    let comments = await dbContext.Comments.find({eventId}).populate('creator')
+    return comments
+  }
+
   async create(body) {
+    const createDate = new Date(body.startDate)
+    const Today = new Date()
+    if (createDate < Today) {
+      throw new BadRequest('You cant create a event in the past')
+    }
     let towerEvent = await dbContext.TowerEvents.create(body)
     await towerEvent.populate('creator')
     return towerEvent

@@ -5,19 +5,26 @@ import { BadRequest } from "../utils/Errors"
 class TicketsService{
   
   async create(body) {
+    let TowerEvent = await dbContext.TowerEvents.findById(body.eventId)
+    if (TowerEvent.capacity == 0) {
+      throw new BadRequest("nah my person this event is sold out. Better luck next time")
+    }
     let ticket = await dbContext.Tickets.create(body)
     await ticket.populate('account')
     await ticket.populate('event')
-    let TowerEvent = await dbContext.TowerEvents.findById(ticket.eventId)
     TowerEvent.capacity --
     TowerEvent.save()
     return ticket
   }
 
-  async deleteTicket(eventId ){
-    const ticket = await dbContext.Tickets.findById(eventId)
+  async deleteTicket(id, userId){
+    
+    const ticket = await dbContext.Tickets.findById(id)
     .populate('account')
     .populate('event')
+    if (ticket.accountId.toString() != userId) {
+      throw new BadRequest("you don't have permission to delete this ticket")
+    }
     let TowerEvent = await dbContext.TowerEvents.findById(ticket.event)
     TowerEvent.capacity ++
     TowerEvent.save()
