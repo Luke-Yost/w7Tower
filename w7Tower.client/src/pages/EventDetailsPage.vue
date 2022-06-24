@@ -66,7 +66,14 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-10 offset-1"></div>
+      <div class="col-10 offset-1">
+        <h2>Your Posted Tower Events</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-10 offset-1">
+        
+      </div>
     </div>
   </div>
 </template>
@@ -80,12 +87,24 @@ import Pop from "../utils/Pop"
 export default {
   props: { editEvent: { type: Object, required: false, default: {}}},
   setup(props){
+        onMounted(async () => {
+            try {
+                await eventsService.getEvents();
+            }
+            catch (error) {
+                logger.error(error);
+                Pop.toast(error.message, "error");
+            }
+        });
       const eventData = ref({});
       watchEffect(()=>{
         logger.log(props.editEvent);
         eventData.value = props.editEvent;
       })
     return {
+      account: computed(() => AppState.account),
+      events: computed(() => AppState.events),
+      let myEvents = events.find(m =>eventData.creatorId) ,
       eventData,
       async createEvent(){
         try {
