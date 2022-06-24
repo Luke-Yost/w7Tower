@@ -1,17 +1,52 @@
 <template>
-  <div class="home flex-grow-1 d-flex flex-column align-items-center justify-content-center">
-    <div class="home-card p-5 bg-white rounded elevation-3">
-      <img src="https://bcw.blob.core.windows.net/public/img/8600856373152463" alt="CodeWorks Logo" class="rounded-circle">
-      <h1 class="my-5 bg-dark text-white p-3 rounded text-center">
-        Vue 3 Starter
-      </h1>
+  <div class="container">
+    <div class="row">
+      <div class="col-10 offset-1">
+        <div class="row">
+          <div class="col-12 m-3 p-2">
+            <div class=" border border-3 border-info rounded bg-dark text-center">
+              <h3>Get tickets to events here at Tower Event. We just might be the best website ever made. Period.</h3>
+            </div>
+          </div>
+          <!-- NOTE put events here -->
+          <!-- <div class="event col-12 m-2 p-1 border border-info border-3 bg-light rounded">
+            <div class="row">
+              <div class="col-6">
+                <h3>Event Title: </h3>
+                <h3>Date:</h3>
+              </div>
+              <div class="col-6">
+                <h3>Remaining Tickets: </h3>
+                <h3>Event Location: </h3>
+              </div>
+            </div>
+          </div> -->
+
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import { AppState } from "../AppState"
+import { computed, onMounted } from "vue"
+import Pop from '../utils/Pop'
 export default {
-  name: 'Home'
+  name: 'Home',
+  setup(){
+    onMounted(async() => {
+      try {
+        await eventService.getEvents()
+      } catch (error) {
+        logger.error(error)
+        Pop.toast(error.message, 'error')
+      }
+    })
+    return {
+      events: computed(() => AppState.events)
+    }
+  }
 }
 </script>
 

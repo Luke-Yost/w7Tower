@@ -1,8 +1,9 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
-      <div class="d-flex flex-column align-items-center">
-        <img alt="logo" src="../assets/img/cw-logo.png" height="45" />
+      <div class="d-flex mx-2 align-items-center">
+        <img class="mx-2" alt="logo" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.jM5fQIuwvdBxZvpQT474egHaJl%26pid%3DApi%26h%3D160&f=1" height="55" />
+        <h1>Tower Events</h1>
       </div>
     </router-link>
     <button
@@ -20,10 +21,10 @@
       <ul class="navbar-nav me-auto">
         <li>
           <router-link
-            :to="{ name: 'About' }"
+            :to="{ name: 'EventDetails' }"
             class="btn text-success lighten-30 selectable text-uppercase"
           >
-            About
+            Event Details
           </router-link>
         </li>
       </ul>
