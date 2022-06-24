@@ -1,7 +1,6 @@
 import { dbContext } from "../db/DbContext";
 import { BadRequest } from "../utils/Errors"
 class TowerEventsService {
-  
   async getAll(query = {}){
     let towerEvents = await dbContext.TowerEvents.find(query).populate('creator')
     return towerEvents
@@ -10,6 +9,11 @@ class TowerEventsService {
   async getById(id) {
     let towerEvent = await dbContext.TowerEvents.findById(id).populate('creator')
     return towerEvent
+  }
+
+async getEventTickets(eventId) {
+    let tickets = await dbContext.Tickets.find({eventId}).populate('account')
+    return tickets
   }
 
   async create(body) {
