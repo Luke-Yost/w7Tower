@@ -18,10 +18,11 @@ class TicketsService{
     const ticket = await dbContext.Tickets.findById(eventId)
     .populate('account')
     .populate('event')
-    let TowerEvent = await dbContext.TowerEvents.findById(eventId)
-    ticket.remove()
+    let TowerEvent = await dbContext.TowerEvents.findById(ticket.event)
     TowerEvent.capacity ++
     TowerEvent.save()
+    ticket.remove()
+    
     return `deleted ticket`
   }
 
