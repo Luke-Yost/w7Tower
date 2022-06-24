@@ -10,6 +10,9 @@
         <h3>Remaining Tickets: {{event.capacity}}</h3>
         <h3>Event Location: {{event.location}}</h3>
       </div>
+      <div class="col-12 d-flex justify-content-evenly">
+        <button class="btn btn-success">Attend Event</button>
+      </div>
     </div>
   </div>
   </div>
