@@ -14,10 +14,16 @@ class TicketsService{
     return ticket
   }
 
-  // async getUserTickets(accountId) {
-  //   let ticket = await dbContext.Tickets.findById(accountId)
-  //   return ticket
-  // }
+  async deleteTicket(eventId ){
+    const ticket = await dbContext.Tickets.findById(eventId)
+    .populate('account')
+    .populate('event')
+    let TowerEvent = await dbContext.TowerEvents.findById(eventId)
+    ticket.remove()
+    TowerEvent.capacity ++
+    TowerEvent.save()
+    return `deleted ticket`
+  }
 
 }
 

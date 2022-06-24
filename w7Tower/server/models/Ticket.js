@@ -1,7 +1,6 @@
 import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 const ObjectId = Schema.Types.ObjectId
-// import { TowerEventSchema } from "./TowerEvent"
 
 export const TicketSchema = new Schema(
   {
