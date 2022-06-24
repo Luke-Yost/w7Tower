@@ -27,6 +27,14 @@
             Event Details
           </router-link>
         </li>
+        <li>
+          <router-link
+            :to="{ name: 'EventDetails' }"
+            class="btn text-success lighten-30 selectable text-uppercase"
+          >
+            Create Event
+          </router-link>
+        </li>
       </ul>
       <!-- LOGIN COMPONENT HERE -->
       <Login />
