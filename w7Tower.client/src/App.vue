@@ -10,6 +10,7 @@
       🐦Made By Luke Yost at CodeWorks🐦
     </div>
   </footer>
+  <Modal/>
 </template>
 
 <script>

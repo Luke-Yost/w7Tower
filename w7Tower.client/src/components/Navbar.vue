@@ -28,14 +28,18 @@
           </router-link>
         </li>
         <li>
-          <router-link
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Create Tower Event
+</button>
+          <!-- <router-link
             :to="{ name: 'EventDetails' }"
             class="btn text-success lighten-30 selectable text-uppercase"
           >
             Create Event
-          </router-link>
+          </router-link> -->
         </li>
       </ul>
+      
       <!-- LOGIN COMPONENT HERE -->
       <Login />
     </div>

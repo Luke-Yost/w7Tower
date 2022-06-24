@@ -1,12 +1,12 @@
 <template>
-  <div class="container">
-    <div class="row">
-      <div class="col-10 offset-1 d-flex justify-content-center">
-        <h2 class="m-3 border border-2 border-dark text-info rounded p-2 bg-light shadow">Create a Tower Event Posting!</h2>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Create Tower Event</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-    <!-- </div>  
-    <div class="row">
-      <div class="col-10 offset-1 bg-dark border border-info border-3 rounded p-3 justify-content-center">
+      <div class="modal-body">
         <form @submit.prevent="createEvent">
           <input
             class="form-control m-2"
@@ -59,24 +59,20 @@
             v-model="eventData.description"
           ></textarea>
           <div class="d-flex justify-content-center">
-            <-- <button class="m-2">Abandon Event</button> -->
-            <!-- <button @click.prevent="createEvent()" class="m-2">Create Event Post!</button>
+            <!-- <button class="m-2">Abandon Event</button> -->
+            <button @click.prevent="createEvent()" class="m-2">Create Event Post!</button>
           </div>
-        </form> --> 
+        </form>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-10 offset-1">
-        <h2>Your Posted Tower Events</h2>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-10 offset-1">
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
         
       </div>
     </div>
-  <!-- </div> -->
+  </div>
+</div>
 </template>
+
 
 <script>
 import { computed, onMounted, ref, watchEffect } from "vue"
@@ -104,7 +100,7 @@ export default {
     return {
       account: computed(() => AppState.account),
       events: computed(() => AppState.events),
-      // let myEvents = events.find(m =>eventData.creatorId) ,
+      // let myEvents = events.find(m =>eventData.creatorId),
       eventData,
       async createEvent(){
         try {
