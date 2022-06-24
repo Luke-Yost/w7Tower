@@ -17,6 +17,7 @@
 <script>
 import { AppState } from "../AppState"
 import { computed, onMounted, reactive } from "vue"
+import { logger } from "../utils/Logger"
 import Pop from '../utils/Pop'
 import { eventsService } from "../services/EventsService"
 export default {
