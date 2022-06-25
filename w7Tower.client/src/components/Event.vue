@@ -13,6 +13,11 @@
       <div class="col-12 d-flex justify-content-evenly">
         <button class="btn btn-success">Get Ticket</button>
       </div>
+      <div class="col-12 d-flex justify-content-evenly">
+        <button @click="getEventComments(event.id)" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+          See Comments
+        </button>
+      </div>
     </div>
   </div>
   </div>

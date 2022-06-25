@@ -23,6 +23,7 @@
       </div>
     </div>
   </div>
+  <CommentsModal/>
 </template>
 
 <script>
@@ -49,6 +50,7 @@ export default {
         onMounted(async () => {
             try {
                 await eventsService.getEvents();
+                await eventsService.getEventComments()
             }
             catch (error) {
                 logger.error(error);

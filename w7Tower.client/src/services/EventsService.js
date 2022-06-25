@@ -14,6 +14,11 @@ class EventsService{
     logger.log('posted event', res.data)
     AppState.events.push(res.data)
   }
+
+  async getEventComments(){
+
+  }
+
 }
 
 export const eventsService = new EventsService()
