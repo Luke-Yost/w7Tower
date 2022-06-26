@@ -14,7 +14,7 @@
         <button class="btn btn-success">Get Ticket</button>
       </div>
       <div class="col-12 d-flex justify-content-evenly">
-        <button @click="getComments" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+        <button @click="setActiveEvent(event.id)" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">
           See Comments
         </button>
       </div>
@@ -62,12 +62,17 @@ export default {
     //       }
     //     })
     return {
-      
-      // getComments(){
-      //   router.push({ name: 'EventComments', params: { id: props.event.id}})
-      // },
+    setActiveEvent(id){
+      AppState.activeEvent = id
+      console.log(AppState.activeEvent);
+      this.getComments()
+    },
+      async getComments(){
+        await eventsService.getEventComments(this.activeEvent)
+      },
       account: computed(() => AppState.account),
       comments: computed( () => AppState.eventComments),
+      activeEvent: computed( () => AppState.activeEvent),
     }
   }
 }
