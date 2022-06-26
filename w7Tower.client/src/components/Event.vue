@@ -47,8 +47,19 @@ import { eventsService } from "../services/EventsService"
 export default {
   props: { event: { type: Object, required: true}},
   setup(props){
+    // onMounted(async () => {
+    //         try {
+    //             await eventsService.getEventComments(props.event.id)
+    //         }
+    //         catch (error) {
+    //             logger.error(error);
+    //             Pop.toast(error.message, "error");
+    //         }
+    //     });
     return {
       account: computed(() => AppState.account),
+      // allComments: computed( () => AppState.allComments),
+      // thisEventsComments: allComments.filter(c => c.id != props.event.id)
       
     }
   }
