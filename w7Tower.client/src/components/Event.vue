@@ -14,7 +14,7 @@
         <button class="btn btn-success">Get Ticket</button>
       </div>
       <div class="col-12 d-flex justify-content-evenly">
-        <button @click="getEventComments(event.id)" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+        <button @click="getComments" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">
           See Comments
         </button>
       </div>
@@ -40,27 +40,34 @@
 
 <script>
 import { AppState } from "../AppState"
-import { computed, onMounted, reactive } from "vue"
+import { computed, onMounted, reactive, watchEffect } from "vue"
 import { logger } from "../utils/Logger"
 import Pop from '../utils/Pop'
 import { eventsService } from "../services/EventsService"
+import { useRouter } from 'vue-router'
 export default {
   props: { event: { type: Object, required: true}},
   setup(props){
-    // onMounted(async () => {
-    //         try {
-    //             await eventsService.getEventComments(props.event.id)
+    const router = useRouter()
+    // const route = useRouter()
+    //   watchEffect(async () => {
+    //       try {
+    //         if (route.name == 'EventComments') {
+    //           await eventsService.getEventComments(route.params.id)
+    //           console.log('comments request sent');
     //         }
-    //         catch (error) {
-    //             logger.error(error);
-    //             Pop.toast(error.message, "error");
-    //         }
-    //     });
+    //       } catch (error) {
+    //         logger.error(error)
+    //         Pop.toast(error.message, 'error')
+    //       }
+    //     })
     return {
-      account: computed(() => AppState.account),
-      // allComments: computed( () => AppState.allComments),
-      // thisEventsComments: allComments.filter(c => c.id != props.event.id)
       
+      // getComments(){
+      //   router.push({ name: 'EventComments', params: { id: props.event.id}})
+      // },
+      account: computed(() => AppState.account),
+      comments: computed( () => AppState.eventComments),
     }
   }
 }

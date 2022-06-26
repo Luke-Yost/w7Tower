@@ -42,15 +42,26 @@ export default {
         watchEffect(async () => {
           try {
             await eventsService.getEvents(filterEvent.value)
+              // if (route.name == 'EventComments') {
+              //   await eventsService.getEventComments(route.params.id)
+              // }
           } catch (error) {
             logger.error(error)
             Pop.toast(error.message, 'error')
           }
+          // try {
+          //   if (route.name == 'EventComments') {
+          //     await eventsService.getEventComments(route.params.id)
+          //     console.log('comments request sent');
+          //   }
+          // } catch (error) {
+          //   logger.error(error)
+          //   Pop.toast(error.message, 'error')
+          // }
         })
         onMounted(async () => {
             try {
                 await eventsService.getEvents();
-                await eventsService.getEventComments()
             }
             catch (error) {
                 logger.error(error);
