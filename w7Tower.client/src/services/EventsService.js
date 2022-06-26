@@ -16,9 +16,9 @@ class EventsService{
   }
 
   async getEventComments(id){
-    const res = await api.get(`api/events/${id}/comments`)
-    // logger.log('got events comments', res.data)
-    AppState.allComments.push(res.data)
+    const res = await api.get('api/events/' +id+'/comments')
+    logger.log('got events comments', res.data)
+    AppState.eventComments.push(res.data)
   }
 
 }
