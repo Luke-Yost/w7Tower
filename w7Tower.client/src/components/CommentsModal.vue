@@ -37,18 +37,6 @@
     </div>
   </div>
 
-  <!-- <div class="container">
-    <div class="row">
-      <div class="col-md-4">
-        <img class="" src="https:/thiscatdoesnotexist.com" alt="">
-        <h3>Name</h3>
-      </div>
-      <div class="col-md-8 d-flex justify-content-center">
-        <h3>Comment body text</h3>
-      </div>
-    </div>
-  </div> -->
-
 </template>
 
 

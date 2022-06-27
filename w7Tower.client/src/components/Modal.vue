@@ -27,7 +27,7 @@
               v-model="eventData.description"></textarea>
             <div class="d-flex justify-content-center">
               <!-- <router-link class="" :to="{ name: 'EventDetails' }"> -->
-                <button @click.prevent="createEvent()" class="m-2">Create Event Post!</button>
+                <button @click.prevent="createEvent()" data-bs-dismiss="modal" class="m-2">Create Event Post!</button>
               <!-- </router-link> -->
             </div>
           </form>

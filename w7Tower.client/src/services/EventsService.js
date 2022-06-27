@@ -13,6 +13,7 @@ class EventsService{
     const res = await api.post('api/events', body)
     logger.log('posted event', res.data)
     AppState.events.push(res.data)
+    AppState.activeEvent = res.data
   }
 
   async getEventComments(event){

@@ -19,7 +19,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto">
-        <li>
+        <li class="p-1">
           <router-link
             :to="{ name: 'EventDetails' }"
             class="btn text-success lighten-30 selectable text-uppercase"
@@ -27,7 +27,7 @@
             Event Details
           </router-link>
         </li>
-        <li>
+        <li class="p-1">
           <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
   Create Tower Event
 </button>

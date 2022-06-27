@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col-12 offset-1 d-flex justify-content-center">
-        <h2 class="m-3 border border-2 border-dark text-info rounded p-2 bg-light shadow">Create a Tower Event Posting!</h2>
+        <h2 class="m-3 border border-2 border-dark text-info rounded p-2 bg-light shadow">{{activeEvent.name}}</h2>
       </div>
       </div>
     </div>
