@@ -26,9 +26,9 @@
             <textarea class="form-control m-2" cols="35" rows="10" required placeholder="Event Details and Description"
               v-model="eventData.description"></textarea>
             <div class="d-flex justify-content-center">
-              <router-link class="" :to="{ name: 'EventDetails' }">
+              <!-- <router-link class="" :to="{ name: 'EventDetails' }"> -->
                 <button @click.prevent="createEvent()" class="m-2">Create Event Post!</button>
-              </router-link>
+              <!-- </router-link> -->
             </div>
           </form>
         </div>
@@ -44,6 +44,7 @@
 
 <script>
 import { computed, onMounted, ref, watchEffect } from "vue"
+import { useRouter } from "vue-router"
 import { AppState } from "../AppState"
 import { eventsService } from "../services/EventsService"
 import { logger } from "../utils/Logger"
@@ -51,6 +52,7 @@ import Pop from "../utils/Pop"
 export default {
   props: { editEvent: { type: Object, required: false, default: {} } },
   setup(props) {
+    const router = useRouter()
     onMounted(async () => {
       try {
         await eventsService.getEvents();
@@ -75,6 +77,7 @@ export default {
           logger.log(eventData.value)
           await eventsService.createEvent(eventData.value)
           eventData.value = {};
+          router.push({ name: 'EventDetails'})
           Pop.toast("Tower Event Posted!", "success")
         } catch (error) {
           logger.error(error)
