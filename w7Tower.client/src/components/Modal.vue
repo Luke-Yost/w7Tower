@@ -26,7 +26,9 @@
             <textarea class="form-control m-2" cols="35" rows="10" required placeholder="Event Details and Description"
               v-model="eventData.description"></textarea>
             <div class="d-flex justify-content-center">
-              <button @click.prevent="createEvent()" class="m-2">Create Event Post!</button>
+              <router-link class="" :to="{ name: 'EventDetails' }">
+                <button @click.prevent="createEvent()" class="m-2">Create Event Post!</button>
+              </router-link>
             </div>
           </form>
         </div>
