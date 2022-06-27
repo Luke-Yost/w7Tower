@@ -8,13 +8,14 @@
         </div>
         <div class="modal-body">
           <form @submit.prevent="makeComment">
-            <textarea class="form-control m-2" cols="35" rows="10" required placeholder="Your comment here.."
+            <textarea class="form-control m-2" cols="35" rows="6" required placeholder="Your comment here.."
               v-model="commentData.body"></textarea>
+            
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button @click="makeComment()" type="button" class="btn btn-primary">Add Comment</button>
+          <button @click="makeComment(commentData, activeEvent)" type="button" class="btn btn-primary">Add Comment</button>
         </div>
       </div>
     </div>
@@ -24,6 +25,7 @@
 
 <script>
 import { computed, ref, watchEffect } from "vue";
+import { AppState } from "../AppState";
 import { commentsService } from "../services/CommentsService"
 import { logger } from "../utils/Logger";
 import Pop from "../utils/Pop";
@@ -38,9 +40,10 @@ export default {
     })
     return {
       commentData,
-      async makeComment(){
+      async makeComment(commentData, activeEvent){
         try {
-          await commentsService.makeComment()
+          // commentData.eventId = activeEvent  
+          await commentsService.makeComment(commentData, activeEvent)
         } catch (error) {
           logger.error(error)
           Pop.toast(error.message, 'error')
@@ -48,6 +51,7 @@ export default {
       },
       account: computed(() => AppState.account),
       comments: computed( () => AppState.eventComments),
+      activeEvent: computed( () => AppState.activeEvent)
     }
   }
 }

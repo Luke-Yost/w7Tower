@@ -10,10 +10,8 @@
         <h3>Remaining Tickets: {{event.capacity}}</h3>
         <h3>Event Location: {{event.location}}</h3>
       </div>
-      <div class="col-12 d-flex justify-content-evenly">
-        <button class="btn btn-success">Get Ticket</button>
-      </div>
-      <div class="col-12 d-flex justify-content-evenly">
+      <div class="col-12 d-flex justify-content-evenly p-2">
+        <button @click="getTicket(event.id)" class="btn btn-success">Get Ticket</button>
         <button @click="setActiveEvent(event.id)" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">
           See Comments
         </button>
@@ -44,6 +42,7 @@ import { computed, onMounted, reactive, watchEffect } from "vue"
 import { logger } from "../utils/Logger"
 import Pop from '../utils/Pop'
 import { eventsService } from "../services/EventsService"
+import {ticketsService} from  "../services/TicketsService"
 import { useRouter } from 'vue-router'
 export default {
   props: { event: { type: Object, required: true}},
@@ -62,6 +61,14 @@ export default {
     //       }
     //     })
     return {
+      async getTicket(eventId){
+        try {
+          await ticketsService.getTicket(eventId)
+        } catch (error) {
+          logger.error(error)
+          Pop.toast(error.message, 'error')
+        }
+      },
     setActiveEvent(id){
       AppState.activeEvent = id
       console.log(AppState.activeEvent);

@@ -6,7 +6,7 @@ class EventsService{
 
   async getEvents(query = ''){
     const res = await api.get('api/events'+ query)
-    logger.log('getting events', res.data)
+    // logger.log('getting events', res.data)
     AppState.events = res.data
   }
   async createEvent(body){
