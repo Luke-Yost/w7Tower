@@ -12,6 +12,13 @@ class CommentsService{
     console.log('dfsdf',AppState.activeEvent);
     console.log('event commetns', AppState.eventComments );
   }
+
+  async deleteComment(comment){
+    const res = await api.delete('api/comments/' + comment.id)
+    logger.log(res.data)
+  }
+
 }
+
 
 export const commentsService = new CommentsService()

@@ -7,9 +7,9 @@
               <div class="col-md-8 d-flex justify-content-center align-items-center">
                 <h5>{{comment.body}}</h5>
               </div>
-                <!-- <div  v-show="account.id == comment.creatorId" class="col-12 d-flex justify-content-center pb-2">
-                  <button class="btn btn-danger">Delete Comment</button>
-                </div> -->
+                <div  v-show="account.id == comment.creatorId" class="col-12 d-flex justify-content-center pb-2">
+                  <button class="btn btn-danger" @click="deleteComment(comment)">Delete Comment</button>
+                </div>
             </div>
 </template>
 
@@ -17,11 +17,20 @@
 <script>
 import { computed } from "vue"
 import { AppState } from "../AppState"
+import { commentsService } from "../services/CommentsService"
 
 export default {
   props: { comment: { type: Object, required: true}},
   setup(){
     return {
+      async deleteComment(comment){
+        try {
+          await commentsService.deleteComment(comment)
+        } catch (error) {
+          logger.error(error)
+          Pop.toast(error.message, 'error')
+        }
+      },
       account: computed(() => AppState.account),
     }
   }

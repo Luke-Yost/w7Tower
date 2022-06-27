@@ -22,6 +22,10 @@ class EventsService{
     AppState.eventComments = res.data
     console.log('appstate comments',  AppState.eventComments );
   }
+  async cancelEvent(eventId){
+    const res = await api.delete(`api/events/${eventId}`)
+    logger.log(res.data)
+  }
 
 }
 

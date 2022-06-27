@@ -20,7 +20,7 @@
           <div class="col-md-6 d-flex flex-column align-content-center fs-4">
             <p>Hosted By {{activeEvent.creator.name}}</p>
             <p>Event Type: {{activeEvent.type}}</p>
-
+            <button v-show="activeEvent.creator.id ==account.id" @click="cancelEvent(activeEvent.id)" class="btn btn-danger">Cancel Event</button>
           </div>
         </div>
       </div>
@@ -41,7 +41,15 @@ export default {
 
     return {
       account: computed(() => AppState.account),
-      activeEvent: computed(() => AppState.activeEvent)
+      activeEvent: computed(() => AppState.activeEvent),
+      async cancelEvent(eventId){
+        try {
+          await eventsService.cancelEvent(eventId)
+        } catch (error) {
+          logger.error(error)
+          Pop.toast(error.message, 'error')
+        }
+      }
     
     }
   }
