@@ -15,10 +15,11 @@ class EventsService{
     AppState.events.push(res.data)
   }
 
-  async getEventComments(id){
-    const res = await api.get('api/events/' +id+'/comments')
+  async getEventComments(event){
+    const res = await api.get('api/events/' +event.id+'/comments')
     logger.log('got events comments', res.data)
-    AppState.eventComments.push(res.data)
+    AppState.eventComments = res.data
+    console.log('appstate comments',  AppState.eventComments );
   }
 
 }

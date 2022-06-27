@@ -3,13 +3,13 @@
     <div class="row">
       <div class="col-10 offset-1">
         <div class="row">
-          <div class="col-12 m-2 p-1  border border-3 border-info rounded bg-dark text-center">
-            <h3>Get tickets to events here at Tower Event. We just might be the best website ever made. Period.</h3>
+          <div class="col-12 m-2 p-1 border border-3 border-info rounded bg-dark text-center">
+            <p class="fs-2">Get tickets to events here at Tower Event. We just might be the best website ever made. Period.</p>
           </div>
-          <div class="col-md-8 offset-md-2 bg-light border rounded shadow d-flex justify-content-center px-1 py-2">
-            <h6>Filter Events By Type</h6>
+          <div class="col-12 bg-light border rounded shadow d-flex align-items-center justify-content-center px-1 py-2">
+            <b class="fs-3">Filter Events By Type</b>
           </div>
-          <div class="col-md-8 offset-md-2 bg-light border rounded shadow d-flex justify-content-evenly px-1 py-2">
+          <div class="col-12 bg-light border rounded shadow d-flex justify-content-evenly px-1 py-2">
               <button @click="filterEvent = ''" class="btn btn-info">All Events</button>
               <button  @click="filterEvent = 'concert'" class="btn btn-info">Concerts</button>
               <button @click="filterEvent = 'sport'" class="btn btn-info">Sporting Events</button>

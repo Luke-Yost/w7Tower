@@ -7,7 +7,10 @@ class CommentsService{
     // body.   = id
     const res = await api.post('api/comments', body)
     logger.log('made comment', res.data)
+    
     AppState.eventComments.push(res.data)
+    console.log('dfsdf',AppState.activeEvent);
+    console.log('event commetns', AppState.eventComments );
   }
 }
 

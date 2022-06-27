@@ -7,6 +7,6 @@ export const AppState = reactive({
   events: [],
   myEvents: [],
   myTickets: [],
-  activeEvent: '',
+  activeEvent: {},
   eventComments: []
 })

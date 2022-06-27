@@ -3,16 +3,16 @@
     <div class="event col-12 m-2 p-1 border border-info border-3 bg-light rounded shadow">
     <div class="row">
       <div class="col-md-6">
-        <h3>Event Title: {{event.name}} </h3>
-        <h3>Date: {{event.startDate.substring(0,10)}}</h3>
+        <p class="fs-3">Event Title: {{event.name}} </p>
+        <p class="fs-3">Date: {{event.startDate.substring(0,10)}}</p>
       </div>
       <div class="col-md-6">
-        <h3>Remaining Tickets: {{event.capacity}}</h3>
-        <h3>Event Location: {{event.location}}</h3>
+        <p class="fs-3">Remaining Tickets: {{event.capacity}}</p>
+        <p class="fs-3">Event Location: {{event.location}}</p>
       </div>
       <div class="col-12 d-flex justify-content-evenly p-2">
         <button @click="getTicket(event.id)" class="btn btn-success">Get Ticket</button>
-        <button @click="setActiveEvent(event.id)" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+        <button @click="setActiveEvent(event)" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">
           See Comments
         </button>
       </div>
@@ -20,15 +20,15 @@
   </div>
   </div>
   <div v-if="event.capacity == 0 || event.isCanceled">
-    <div class="event col-12 m-2 p-1 border border-dark border-3 bg-danger text-light rounded shadow">
+    <div class="event col-12 m-2 p-1 border border-danger border-3 bg-dark text-light rounded shadow">
     <div class="row">
       <div class="col-md-6">
-        <h3>Event Title: {{event.name}} </h3>
-        <h3>Date: {{event.startDate.substring(0,10)}}</h3>
+        <p class="fs-3">Event: {{event.name}} </p>
+        <p class="fs-3">Date: {{event.startDate.substring(0,10)}}</p>
       </div>
       <div class="col-md-6">
-        <h3>Remaining Tickets: {{event.capacity}}</h3>
-        <h3>Event Location: {{event.location}}</h3>
+        <p class="fs-3">Remaining Tickets: {{event.capacity}}</p>
+        <p class="fs-3">Location: {{event.location}}</p>
       </div>
     </div>
   </div>
@@ -61,21 +61,21 @@ export default {
     //       }
     //     })
     return {
-      async getTicket(eventId){
+      async getTicket(event){
         try {
-          await ticketsService.getTicket(eventId)
+          await ticketsService.getTicket(event)
         } catch (error) {
           logger.error(error)
           Pop.toast(error.message, 'error')
         }
       },
-    setActiveEvent(id){
-      AppState.activeEvent = id
+    setActiveEvent(event){
+      AppState.activeEvent = event
       console.log(AppState.activeEvent);
-      this.getComments()
+      this.getComments(event)
     },
-      async getComments(){
-        await eventsService.getEventComments(this.activeEvent)
+      async getComments(event){
+        await eventsService.getEventComments(event)
       },
       account: computed(() => AppState.account),
       comments: computed( () => AppState.eventComments),
