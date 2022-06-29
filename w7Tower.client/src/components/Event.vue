@@ -22,7 +22,7 @@
   </div>
 
   <div v-if="event.capacity == 0 || event.isCanceled">
-    <div id="event" class="row m-1 p-2 border border-danger border-3 bg-dark text-light rounded shadow">
+    <div id="event" class="canceled row m-1 px-2 pt-1 border border-danger border-3 bg-dark text-light rounded shadow">
       <div class="col-12">
         <h4>{{event.name}} </h4>
         <p class="fs-6">Date: {{formatEventDate(event.startDate)}}</p>
@@ -82,7 +82,10 @@ export default {
 
 <style lang="scss" scoped>
   #event{
-    height: 50vh;
+    height: 40vh;
+  }
+  #event.canceled{
+    height: 30vh;
   }
   .btn{
     height: min-content;
