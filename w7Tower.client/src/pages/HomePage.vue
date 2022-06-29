@@ -6,10 +6,12 @@
           <div class="col-12 m-2 p-1 border border-3 border-info rounded bg-dark text-center">
             <p class="fs-2">Get tickets to events here at Tower Event. We just might be the best website ever made. Period.</p>
           </div>
-          <div class="col-12 bg-light border rounded shadow d-flex align-items-center justify-content-center px-1 py-2">
+        </div>
+          <div class="row  m-1 p-2">
+          <div class="col-12 bg-light border rounded shadow d-flex align-items-center justify-content-center">
             <b class="fs-3">Filter Events By Type</b>
           </div>
-          <div class="col-12 bg-light border rounded shadow d-flex justify-content-evenly px-1 py-2">
+          <div class="col-12 py-2 bg-light border rounded shadow d-flex justify-content-evenly">
               <button @click="filterEvent = ''" class="btn btn-info">All Events</button>
               <button  @click="filterEvent = 'concert'" class="btn btn-info">Concerts</button>
               <button @click="filterEvent = 'sport'" class="btn btn-info">Sporting Events</button>
@@ -17,8 +19,10 @@
               <button @click="filterEvent = 'convention'" class="btn btn-info">Conventions</button>
           </div>
         </div>
-        <div class="row" v-for="e in events" :key="e.id">
-          <Event :event="e" />
+        <div class="row">
+          <div class="col-md-4" v-for="e in events" :key="e.id">
+            <Event :event="e" />
+          </div>
         </div>
       </div>
     </div>
