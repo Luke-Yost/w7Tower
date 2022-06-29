@@ -35,7 +35,8 @@ export default {
   name: 'Account',
   setup() {
     return {
-      account: computed(() => AppState.account)
+      account: computed(() => AppState.account),
+      myTickets: computed(() => AppState.myEvents),
     }
   }
 }

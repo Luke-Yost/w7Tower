@@ -13,7 +13,7 @@
         </button>
       </div>
       <div class="col-12 d-flex justify-content-evenly py-1">
-        <button  @click="getTicket(event.id), isHidden = true"  class="btn btn-sm btn-success">Get Ticket</button>
+        <button  @click="getTicket(event.id)"  class="btn btn-sm btn-success">Get Ticket</button>
         <router-link class="" :to="{ name: 'EventDetails' }">
           <button class="btn btn-sm btn-info" @click="setActiveEvent(event)">Event Details</button>
         </router-link>

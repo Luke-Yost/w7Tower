@@ -18,25 +18,11 @@
       <span class="navbar-toggler-icon" />
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav me-auto">
-        <li class="p-1">
-          <router-link
-            :to="{ name: 'EventDetails' }"
-            class="btn text-success lighten-30 selectable text-uppercase"
-          >
-            Event Details
-          </router-link>
-        </li>
-        <li class="p-1">
+      <ul class="navbar-nav me-auto d-flex ">
+        <li class="p-1 justify-content-center">
           <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Create Tower Event
-</button>
-          <!-- <router-link
-            :to="{ name: 'EventDetails' }"
-            class="btn text-success lighten-30 selectable text-uppercase"
-          >
-            Create Event
-          </router-link> -->
+            Create Tower Event
+          </button>
         </li>
       </ul>
       
