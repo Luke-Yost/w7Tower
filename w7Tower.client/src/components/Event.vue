@@ -11,7 +11,7 @@
         <p class="fs-3">Event Location: {{event.location}}</p>
       </div>
       <div class="col-12 d-flex justify-content-evenly p-2">
-        <button @click="getTicket(event.id)" class="btn btn-success">Get Ticket</button>
+        <button  @click="getTicket(event.id), isHidden = true"  class="btn btn-success">Get Ticket</button>
         <router-link class="" :to="{ name: 'EventDetails' }">
           <button class="btn btn-info" @click="setActiveEvent(event)">Event Details</button>
         </router-link>

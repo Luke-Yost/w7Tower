@@ -24,6 +24,17 @@
           </div>
         </div>
       </div>
+      <div class="col-md-6">
+        <div class="row" v-for="c in comments" :key="c.id">
+          <Comment :comment="c" />
+        </div>
+      </div>
+      <div class="col-md-6 border my-2 rounded p-1 text-center border-dark bg-light text-dark">
+        <p class="fs-3">Attendees:</p>
+          <div>
+            
+          </div>
+      </div>
       
       </div>
     </div>
@@ -35,24 +46,25 @@ import { AppState } from "../AppState"
 import { eventsService } from "../services/EventsService"
 import { logger } from "../utils/Logger"
 import Pop from "../utils/Pop"
+import Comment from "../components/Comment.vue"
 export default {
-
-  setup(){
-
-    return {
-      account: computed(() => AppState.account),
-      activeEvent: computed(() => AppState.activeEvent),
-      async cancelEvent(eventId){
-        try {
-          await eventsService.cancelEvent(eventId)
-        } catch (error) {
-          logger.error(error)
-          Pop.toast(error.message, 'error')
-        }
-      }
-    
-    }
-  }
+    setup() {
+        return {
+            account: computed(() => AppState.account),
+            activeEvent: computed(() => AppState.activeEvent),
+            comments: computed(() => AppState.eventComments),
+            async cancelEvent(eventId) {
+                try {
+                    await eventsService.cancelEvent(eventId);
+                }
+                catch (error) {
+                    logger.error(error);
+                    Pop.toast(error.message, "error");
+                }
+            }
+        };
+    },
+    components: { Comment }
 }
 </script>
 

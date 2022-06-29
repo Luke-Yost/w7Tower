@@ -4,7 +4,7 @@ import { api } from "./AxiosService"
 
 class TicketsService{
   async getTicket(event){
-    const res = await api.post('api/tickets', event.id)
+    const res = await api.post('api/tickets', {eventId: event})
     logger.log('getting Ticket',res.data)
     AppState.myTickets.push(res.data)
     console.log('mytickets', AppState.myTickets);
