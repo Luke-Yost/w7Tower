@@ -18,16 +18,9 @@
 
           <div class="container">
             <div class="row">
-            <div class="col-12" v-for="c in comments" :key="c.id">
-              <Comment :comment="c" />
-            </div>
-              <!-- <div class="col-md-4">
-                <img class="" src="https:/thiscatdoesnotexist.com" alt="">
-                <h3>Name: {{comment.creator}}</h3>
-              </div>  
-              <div class="col-md-8 d-flex justify-content-center">
-                <p>{{comment.body.value}}</p>
-              </div> -->
+              <div class="col-12" v-for="c in comments" :key="c.id">
+                <Comment :comment="c" />
+              </div>
             </div>
           </div>
 

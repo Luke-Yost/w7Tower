@@ -14,8 +14,8 @@
           </div>
           <div class="col-md-6 d-flex flex-column align-content-center fs-4">
             <p>{{activeEvent.location}}</p>
-            <p>Available Tickets{{activeEvent.capacity}}</p>
-            <p>{{activeEvent.startDate}}</p>
+            <p>Available Tickets: {{activeEvent.capacity}}</p>
+            <p>{{formatEventDate(activeEvent.startDate)}}</p>
           </div>
           <div class="col-md-6 d-flex flex-column align-content-center fs-4">
             <p>Hosted By {{activeEvent.creator.name}}</p>
@@ -25,7 +25,16 @@
         </div>
       </div>
       <div class="col-md-6">
-        <div class="row" v-for="c in comments" :key="c.id">
+        <div class="row">
+          <div class="col-12 d-flex justify-content-center">
+            <form @submit.prevent="makeComment">
+              <textarea class="form-control m-2 shadow" cols="35" rows="6" required placeholder="Your comment here.."
+              v-model="commentData.body"></textarea>
+              <button @click="makeComment(commentData, activeEvent)" type="button" class="btn btn-primary m-2">Add Comment</button>
+          </form>
+          </div>
+        </div>
+        <div class="row p-2" v-for="c in comments" :key="c.id">
           <Comment :comment="c" />
         </div>
       </div>
@@ -47,9 +56,32 @@ import { eventsService } from "../services/EventsService"
 import { logger } from "../utils/Logger"
 import Pop from "../utils/Pop"
 import Comment from "../components/Comment.vue"
+import { commentsService } from "../services/CommentsService"
 export default {
-    setup() {
+      props: { editComment: { type: Object, required: false, default: {} }, comment: { type: Object, required: false, default: {} }
+      },
+    setup(props) {
+      const commentData = ref({});
+      watchEffect(() => {
+            logger.log(props.editEvent);
+            commentData.value = props.editComment;
+        });
         return {
+            commentData,
+            async makeComment(commentData, activeEvent) {
+                try {
+                    commentData.eventId = activeEvent.id;
+                    await commentsService.makeComment(commentData, activeEvent);
+                }
+                catch (error) {
+                    logger.error(error);
+                    Pop.toast(error.message, "error");
+                }
+            },
+            formatEventDate(inputDate){
+              let prettyDate = new Date(inputDate).toDateString()
+              return `${prettyDate}`
+            },
             account: computed(() => AppState.account),
             activeEvent: computed(() => AppState.activeEvent),
             comments: computed(() => AppState.eventComments),
