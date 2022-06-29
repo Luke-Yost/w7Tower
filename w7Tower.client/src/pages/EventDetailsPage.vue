@@ -40,8 +40,8 @@
       </div>
       <div class="col-md-6 border my-2 rounded p-1 text-center border-dark bg-light text-dark">
         <p class="fs-3">Attendees:</p>
-          <div>
-            
+          <div v-for="a in attendees" :key="a.accountId">
+            <Attendee :attendee="a" />
           </div>
       </div>
       
@@ -85,6 +85,7 @@ export default {
             account: computed(() => AppState.account),
             activeEvent: computed(() => AppState.activeEvent),
             comments: computed(() => AppState.eventComments),
+            attendees: computed(() => AppState.eventAttendees),
             async cancelEvent(eventId) {
                 try {
                     await eventsService.cancelEvent(eventId);
