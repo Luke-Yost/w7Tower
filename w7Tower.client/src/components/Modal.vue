@@ -1,7 +1,7 @@
 <template>
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
+      <div class="modal-content bg-body">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Create Tower Event</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -16,7 +16,7 @@
               v-model="eventData.capacity" />
             <input class="form-control m-2" type="date" required placeholder="Event Date"
               v-model="eventData.startDate" />
-            <select class="form-select form-select m-2" aria-label=".form-select-lg example">
+            <select class="form-select bg-primary form-select m-2" aria-label=".form-select-lg example">
               <option selected>Event Types:</option>
               <option value="concert">Concert</option>
               <option value="digital">Digital</option>
@@ -26,9 +26,7 @@
             <textarea class="form-control m-2" cols="35" rows="10" required placeholder="Event Details and Description"
               v-model="eventData.description"></textarea>
             <div class="d-flex justify-content-center">
-              <!-- <router-link class="" :to="{ name: 'EventDetails' }"> -->
-                <button @click.prevent="createEvent()" data-bs-dismiss="modal" class="m-2">Create Event Post!</button>
-              <!-- </router-link> -->
+                <button @click.prevent="createEvent()" data-bs-dismiss="modal" class="btn btn-primary m-2">Create Event Post!</button>
             </div>
           </form>
         </div>

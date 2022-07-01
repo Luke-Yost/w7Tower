@@ -1,10 +1,10 @@
 <template>
-  <div class="row">
+  <div class="row bg-light m-3 p-1 rounded shadow">
     <div class="col-4">
-      <img :src="attendee.account.picture" :alt="attendee.account.name + ' picture'">
+      <img class="rounded p-2" :src="attendee.account.picture" :alt="attendee.account.name + ' picture'">
     </div>
     <div class="col-8">
-      <h4>{{attendee.account.name}}</h4>
+      <h4 class="my-5">{{attendee.account.name}}</h4>
     </div>
   </div>
 </template>

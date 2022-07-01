@@ -3,20 +3,20 @@
     <div class="row">
       <div class="col-10 offset-1">
         <div class="row">
-          <div class="col-12 m-2 p-1 border border-3 border-info rounded bg-dark text-center">
-            <p class="fs-2">Get tickets to events here at Tower Event. We just might be the best website ever made. Period.</p>
+          <div class="col-12 m-2 p-1 border border-dark border-2 rounded bg-light text-center">
+            <b class="fs-2">Get tickets to events here at Tower Event. We just might be the best website ever made. Period.</b>
           </div>
         </div>
           <div class="row  m-1 p-2">
-          <div class="col-12 bg-light border rounded shadow d-flex align-items-center justify-content-center">
-            <b class="fs-3">Filter Events By Type</b>
+          <div class="col-12 p-2 bg-primary rounded-top shadow d-flex align-items-center justify-content-center">
+            <b class="fs-3 text-info">Filter Events By Type</b>
           </div>
-          <div class="col-12 py-2 bg-light border rounded shadow d-flex justify-content-evenly">
-              <button @click="filterEvent = ''" class="btn btn-info">All Events</button>
-              <button  @click="filterEvent = 'concert'" class="btn btn-info">Concerts</button>
-              <button @click="filterEvent = 'sport'" class="btn btn-info">Sporting Events</button>
-              <button @click="filterEvent = 'digital'" class="btn btn-info">Digital Events</button>
-              <button @click="filterEvent = 'convention'" class="btn btn-info">Conventions</button>
+          <div class="col-12 p-3 bg-primary  rounded-bottom shadow d-flex justify-content-evenly border-top border-2 px-2">
+              <button @click="filterEvent = ''" class="btn btn-light">All Events</button>
+              <button  @click="filterEvent = 'concert'" class="btn btn-light">Concerts</button>
+              <button @click="filterEvent = 'sport'" class="btn btn-light">Sporting Events</button>
+              <button @click="filterEvent = 'digital'" class="btn btn-light">Digital Events</button>
+              <button @click="filterEvent = 'convention'" class="btn btn-light">Conventions</button>
           </div>
         </div>
         <div class="row">

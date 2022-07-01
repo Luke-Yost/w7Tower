@@ -6,8 +6,8 @@
     <router-view />
   </main>
   <footer>
-    <div class="bg-dark text-light text-center p-4">
-      🐦Made By Luke Yost at CodeWorks🐦
+    <div class="bg-primary fs-4 text-center p-4">
+      🐦Made By Luke Yost🐦
     </div>
   </footer>
   <Modal/>

@@ -2,22 +2,22 @@
   <div class="container">
     <div class="row">
       <div class="col-12 d-flex justify-content-center">
-        <h2 class="m-3  text-info rounded p-2 bg-light shadow">{{activeEvent.name}}</h2>
+        <h2 class="m-3  text-dark rounded p-2 bg-light shadow">{{activeEvent.name}}</h2>
       </div>
       <div class="col-12">
-        <div class="row rounded shadow d-flex">
-          <div class="col-12 d-flex bg-light justify-content-center">
+        <div class="row d-flex shadow">
+          <div class="col-md-6 rounded-start d-flex bg-primary justify-content-center">
             <img class="justify-content-center my-2 rounded" :src="activeEvent.coverImg" alt="event image">
           </div>
-          <div class="col-12 border-top border-bottom border-2 p-2 bg-light  border-dark">
-            <p class="fs-5">{{activeEvent.description}}</p>
+          <div class="col-md-6 p-4 bg-primary rounded-end ">
+            <p class="fs-3">{{activeEvent.description}}</p>
           </div>
-          <div class="col-md-6 d-flex flex-column bg-light align-content-center fs-4">
+          <div class="col-md-6 rounded-start d-flex mt-1 flex-column bg-light align-content-center fs-4">
             <p>{{activeEvent.location}}</p>
             <p>Available Tickets: {{activeEvent.capacity}}</p>
             <p>{{formatEventDate(activeEvent.startDate)}}</p>
           </div>
-          <div class="col-md-6 d-flex flex-column bg-light align-content-center fs-4">
+          <div class="col-md-6 d-flex rounded-end mt-1 flex-column bg-light align-content-center fs-4 ">
             <p>Hosted By {{activeEvent.creator.name}}</p>
             <p>Event Type: {{activeEvent.type}}</p>
             <button v-show="activeEvent.creator.id != account.id"  @click="getTicket(event.id)" class="btn btn-sm btn-success">Get Ticket</button>
@@ -27,11 +27,11 @@
       </div>
       <div class="col-md-6">
         <div class="row">
-          <div class="col-12 d-flex justify-content-center">
+          <div class="col-12 rounded my-2 p-1 d-flex bg-primary justify-content-center">
             <form @submit.prevent="makeComment">
               <textarea class="form-control m-2 shadow" cols="35" rows="6" required placeholder="Your comment here.."
               v-model="commentData.body"></textarea>
-              <button @click="makeComment(commentData, activeEvent)" type="button" class="btn btn-primary m-2">Add Comment</button>
+              <button @click="makeComment(commentData, activeEvent)" type="button" class="btn btn-warning m-2">Add Comment</button>
           </form>
           </div>
         </div>
@@ -39,8 +39,8 @@
           <Comment :comment="c" />
         </div>
       </div>
-      <div class="col-md-6 border my-2 rounded p-1 text-center border-dark bg-light text-dark">
-        <p class="fs-3">Attendees:</p>
+      <div class="col-md-6 text-center my-3">
+        <b class="fs-3 bg-primary text-info rounded mb-2  p-1">Attendees:</b>
           <div v-for="a in attendees" :key="a.accountId">
             <Attendee :attendee="a" />
           </div>

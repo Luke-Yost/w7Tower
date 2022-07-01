@@ -1,14 +1,14 @@
 <template>
   <div v-if="event.capacity  > 0">
-    <div id="event" class="row m-1 px-2 pt-1 bg-light rounded shadow">
+    <div id="event" class="row m-1 px-2 pt-1 bg-primary rounded shadow">
       <div class="col-12">
-        <h4 class="text-center">{{event.name}} </h4>
+        <h4 class="text-center text-info">{{event.name}} </h4>
         <p class="fs-6">Date: {{formatEventDate(event.startDate)}}</p>
         <p class="fs-6">Remaining Tickets: {{event.capacity}}</p>
         <p class="fs-6">Location: {{event.location}}</p>
       </div>
       <div class="col-12 border-top border-3 border-dark d-flex justify-content-center m-0 pt-3">
-        <button @click="setActiveEvent(event)" type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+        <button @click="setActiveEvent(event)" type="button" class="btn btn-sm btn-light" data-bs-toggle="modal" data-bs-target="#exampleModal2">
           See Comments
         </button>
       </div>
